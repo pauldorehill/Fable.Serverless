@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FableApp", "FableApp\src\FableApp.fsproj", "{05755DB7-F90C-4BA2-A05C-1E475001A339}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FunctionApp", "FunctionApp\FunctionApp.fsproj", "{5F804B01-9585-40BD-B0B7-617B76599E0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E32462EC-8785-4937-AB39-803551B0D8D5}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		build.fsx = build.fsx
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05755DB7-F90C-4BA2-A05C-1E475001A339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05755DB7-F90C-4BA2-A05C-1E475001A339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05755DB7-F90C-4BA2-A05C-1E475001A339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05755DB7-F90C-4BA2-A05C-1E475001A339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F804B01-9585-40BD-B0B7-617B76599E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F804B01-9585-40BD-B0B7-617B76599E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F804B01-9585-40BD-B0B7-617B76599E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F804B01-9585-40BD-B0B7-617B76599E0C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {652DE804-6D96-44CE-B1EF-FA7187DF711E}
+	EndGlobalSection
+EndGlobal
