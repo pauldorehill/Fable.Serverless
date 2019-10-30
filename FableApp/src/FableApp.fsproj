@@ -3,9 +3,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="package-lock.json" />
-    <None Include="webpack.config.js" />
-    <None Include="package.json" />
     <Compile Include="App.fs" />
   </ItemGroup>
   <ItemGroup>

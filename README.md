@@ -2,26 +2,28 @@
 
 Fable SPA deployed to Azure functions. The static content is all stored in the function app and served from it.
 
-Install the Azure Functions Core Tools package
+### Install the Azure Functions Core Tools package
 ```
 npm install -g azure-functions-core-tools
 ```
 
-Build the project with
+### Build the project with
 
 ```
 dotnet fsi build.fsx
 ```
 Or build the `FableApp` project first, followed by the `FunctionApp` project.
 
-Run the serverless functions locally with
-
+### Run the serverless functions locally with
 ```
 cd FunctionApp; func start
 ```
 
-Note if running from VS the function app runs from the debug/release folders: for some reason the `public` folder contents does not get copied across so the functions will not be able to find any of the files.
-
+### Build + Run
+Build and start the function app running locally in one go
+```
+dotnet fsi run.fsx
+```
 Deploy to Azure Functions :satisfied: live app [here](https://fableserverless.azurewebsites.net/api/public)
 
 ## Notes

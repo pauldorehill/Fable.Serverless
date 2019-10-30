@@ -25,7 +25,7 @@
     <None Include="public\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="public\bundle.js">
+    <None Include="public\bundle.*.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="public\favicon.ico">

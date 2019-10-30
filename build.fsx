@@ -15,12 +15,12 @@ let shellExecute args =
     while not proc.StandardOutput.EndOfStream do
         printfn "%s" <| proc.StandardOutput.ReadLine()
 
-    printfn "Complete."
+    printfn "Complete"
     proc.WaitForExit()
 
 // Build Fable project
 printfn "Building Fable project"
-shellExecute "dotnet build FableApp/src"
+shellExecute "cd FableApp/src; dotnet build "
 
 printfn "Installing NPM packages"
 shellExecute "cd FableApp; npm install"
@@ -31,5 +31,3 @@ shellExecute "cd FableApp; npm run-script build"
 // Build Function App project
 printfn "Building FunctionApp project"
 shellExecute "dotnet build FunctionApp"
-
-printfn "Complete"
