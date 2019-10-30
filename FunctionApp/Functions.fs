@@ -37,7 +37,7 @@ module Server =
         serveStaticContent Indexhtml log context
 
     [<FunctionName("serveFavicon")>]
-    let serveFavicon ([<HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "favicon.ico")>] req : HttpRequest, log : ILogger, context : ExecutionContext) =
+    let serveFavicon ([<HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = Favicon)>] req : HttpRequest, log : ILogger, context : ExecutionContext) =
         log.LogInformation "Serving Favicon"
         serveStaticContent Favicon log context
 
