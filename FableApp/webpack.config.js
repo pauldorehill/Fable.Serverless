@@ -20,7 +20,16 @@ module.exports = {
             favicon: "./src/public/favicon.ico",
             title: "Fable + Preact + Serverless",
             hash: true,
-            cache: true
+            cache: true,
+            // https://github.com/jantimon/html-webpack-plugin/issues/1094 - Explicity required with v3
+            minify: {
+                collapseWhitespace: true,
+                removeComments: true,
+                removeRedundantAttributes: true,
+                removeScriptTypeAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                useShortDoctype: true
+              }
         }),
     ],
     devServer: {
