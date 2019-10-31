@@ -35,7 +35,7 @@ npm install -g azure-functions-core-tools
 ```
 dotnet fsi build.fsx
 ```
-Or build the `FableApp` project first, followed by the `FunctionApp` project.
+Or build the `FableApp` project first (`dotnet build src; npm run-script build`), followed by the `FunctionApp` project.
 
 ### Run the serverless functions locally with
 ```
