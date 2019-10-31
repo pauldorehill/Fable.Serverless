@@ -5,7 +5,7 @@ Fable SPA deployed to Azure functions.
 - The static content is all stored in the function app and served from it
 - Gives an example of how the domain can be shared between both front end and back end
 - Gives an example of how to post json to the server and wait for it to come back
-- Shows the non blocking UI
+- Shows the non-blocking UI
 - Shows how hashing can be incorporated in the build pipeline
 
 There are 3 x Projects:
@@ -35,7 +35,7 @@ npm install -g azure-functions-core-tools
 ```
 dotnet fsi build.fsx
 ```
-Or build the `FableApp` project first (`dotnet build src; npm run-script build`), followed by the `FunctionApp` project.
+Or build the `FableApp` project first `dotnet build src; npm run-script build`, followed by the `FunctionApp` project.
 
 ### Run the serverless functions locally with
 ```
