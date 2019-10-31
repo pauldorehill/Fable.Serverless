@@ -26,8 +26,8 @@ module.exports = {
                 collapseWhitespace: true,
                 removeComments: true,
                 removeRedundantAttributes: true,
-                removeScriptTypeAttributes: true,
-                removeStyleLinkTypeAttributes: true,
+                removeScriptTypeAttributes: false,
+                removeStyleLinkTypeAttributes: false,
                 useShortDoctype: true
               }
         }),
