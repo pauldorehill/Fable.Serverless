@@ -35,4 +35,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharedDomain\SharedDomain.fsproj" />
+  </ItemGroup>
 </Project>
