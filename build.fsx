@@ -14,13 +14,13 @@ let shellExecute args =
     let proc = Process.Start startInfo
     while not proc.StandardOutput.EndOfStream do
         printfn "%s" <| proc.StandardOutput.ReadLine()
-
     printfn "Complete"
     proc.WaitForExit()
 
+// Should really compile in release etc.
 // Build Fable project
 printfn "Building Fable project"
-shellExecute "cd FableApp/src; dotnet build "
+shellExecute "cd FableApp/src; dotnet build"
 
 printfn "Installing NPM packages"
 shellExecute "cd FableApp; npm install"

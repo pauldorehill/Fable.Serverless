@@ -14,11 +14,8 @@ open SharedDomain
 // Currently need to set the URL manually for local testing etc
 type Model =
     { User : User
-      Note : string }
+      Info : string }
     member this.UpdateUser user = { this with User = user }
-    static member PostUrl =
-        //"https://fableserverless.azurewebsites.net/api/json"
-        "http://localhost:7071/api/json"
 
 type Msg =
     | Increment
@@ -27,9 +24,13 @@ type Msg =
     | Submit
     | PostedJson of User
 
-let init() : Model * Cmd<Msg> =
+// Used to test where its running
+// So can deploy locally and to azure
+let rootUrl = string Browser.Dom.window.location
+
+let init () : Model * Cmd<Msg> =
     let user = { Name = "" ; Count = 0; Message = "" }
-    { User = user; Note = "" }, Cmd.none
+    { User = user; Info = "" }, Cmd.none
 
 let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
     match msg with
@@ -39,18 +40,18 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
     | Submit ->
         let msg : JS.Promise<Msg> =
             promise {
-                let! post = Fetch.post(Model.PostUrl, model.User)
+                let! post = Fetch.post(rootUrl + "json", model.User)
                 return (PostedJson post)
             }
         let newUser = if model.User.Message <> "" then { model.User with Message = "Trying again..." } else model.User
-        let note =
-            let time = Math.Abs model.User.Count
-            sprintf "Sent to server. Please wait %is and continue clicking to show non blocking UI" time
-        let newModel = { model with Note = note; User = newUser }
-        newModel , Cmd.OfPromise.result msg
-    | PostedJson user -> { model with Note = "The count is now at your original value"; User = user } , Cmd.none
+        let newInfo =
+            Math.Abs model.User.Count
+            |> sprintf "Sent to server. Please wait %is and continue clicking to show non blocking UI"
+        let newModel = { model with Info = newInfo; User = newUser }
+        newModel, Cmd.OfPromise.result msg
+    | PostedJson user -> { model with Info = "The count is now at your original value"; User = user } , Cmd.none
 
-// Rendered with Preact
+// Rendered with Preact. See package.json
 let view (model : Model) dispatch =
   div []
       [ div []
@@ -62,9 +63,11 @@ let view (model : Model) dispatch =
 
         button [ OnClick (fun _ -> dispatch Submit) ] [ str "Send" ]
         p [] [ str model.User.Message ]
-        p [] [ str model.Note ] ]
+        p [] [ str model.Info ] ]
 
 Program.mkProgram init update view
 |> Program.withReactSynchronous "elmish-app"
+#if DEBUG
 |> Program.withConsoleTrace
+#endif
 |> Program.run

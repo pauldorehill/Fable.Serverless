@@ -47,4 +47,4 @@ Build and start the function app running locally in one go
 ```
 dotnet fsi run.fsx
 ```
-Deploy to Azure Functions :satisfied: live app [here](https://fableserverless.azurewebsites.net/api/public/)
+Deploy to Azure Functions :satisfied: live app [here](https://fableserverless.azurewebsites.net/api/)

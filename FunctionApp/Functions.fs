@@ -30,30 +30,39 @@ module Server =
             log.LogError msg
             BadRequestObjectResult msg :> ObjectResult
 
+    // Could do more interesting things with the routing... like Suave https://suave.io/routing.html
+
     [<FunctionName("serveStatic")>]
-    let serveStatic ([<HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "public/{staticFile?}")>] req : HttpRequest,
+    let serveStatic ([<HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "{staticFile?}")>] req : HttpRequest,
                      log : ILogger,
                      context : ExecutionContext) =
         log.LogInformation "Serving static content"
         match req.Path with
-        | s when s.HasValue && s.Value = "/api/public/" -> "index.html" |> serveStaticContent log context
-        | s -> s.Value.Replace("/api/public/", "") |> serveStaticContent log context
+        | s when s.Value = "/api/" -> "index.html" |> serveStaticContent log context
+        | s -> s.Value.Replace("/api/", "") |> serveStaticContent log context
 
     [<FunctionName("serveJSON")>]
     let serveJSON ([<HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "json")>] req : HttpRequest, log : ILogger) =
         log.LogInformation "Serving JSON"
         match req.ContentType with
         | MIMEJSON ->
-            let sr = new StreamReader(req.Body)
-            let postedModel = sr.ReadToEnd() |> User.Decode
-            let msg = sprintf "Hello %s. I see you can count to %i" postedModel.Name postedModel.Count
-            let pause = (System.Math.Abs postedModel.Count) * 1000
-            System.Threading.Thread.Sleep pause // Sleep to show non-blocking UI
-            { postedModel with Message = msg }
-            |> User.Encode
-            |> OkObjectResult
-            :> ObjectResult
+            try
+                let sr = new StreamReader(req.Body)
+                let postedModel = sr.ReadToEnd() |> User.Decode
+                let msg = sprintf "Hello %s. I see you can count to %i" postedModel.Name postedModel.Count
+                let pause = (System.Math.Abs postedModel.Count) * 1000
+                System.Threading.Thread.Sleep pause // Sleep to show non-blocking UI
+                { postedModel with Message = msg }
+                |> User.Encode
+                |> OkObjectResult
+                :> ObjectResult
+            with e ->
+                log.LogError "Failed to decode json"
+                sprintf "Could not decode posted json: %s" e.Message
+                |> BadRequestObjectResult
+                :> ObjectResult
         | _ ->
+            log.LogError "Incorrect mime type"
             sprintf "Incorrect mime type. I was expecting json but got: %s" req.ContentType
             |> BadRequestObjectResult
             :> ObjectResult
