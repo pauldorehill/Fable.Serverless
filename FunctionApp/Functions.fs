@@ -48,7 +48,7 @@ module Server =
             let postedModel = sr.ReadToEnd() |> User.Decode
             let msg = sprintf "Hello %s. I see you can count to %i" postedModel.Name postedModel.Count
             let pause = (System.Math.Abs postedModel.Count) * 1000
-            System.Threading.Thread.Sleep pause // Sleep for 5s to show non-blocking UI
+            System.Threading.Thread.Sleep pause // Sleep to show non-blocking UI
             { postedModel with Message = msg }
             |> User.Encode
             |> OkObjectResult
