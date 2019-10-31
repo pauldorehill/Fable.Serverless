@@ -14,7 +14,7 @@ There are 3 x Projects:
 Contains a simple `User` type that used on front end and the back end. Makes use of `Thoth.Json` & `Thoth.Json.Net`.
 
 #### FableApp
-Fable App using `preact.js` for dom rendering & `Thoth.Fetch` for Fetch API. If deploying somewhere other than locally you will need to set the correct end point url on the `Model.PostUrl`.
+Fable App using `preact.js` for dom rendering & `Thoth.Fetch` for Fetch API. The root url is found from `Browser.Dom.window.location` when the page is first loaded so it will run both locally and deployed.
 
 Makes use of [HtmlWebpackPlugin](https://github.com/jantimon/html-webpack-plugin) & [CleanWebpackPlugin](https://github.com/johnagan/clean-webpack-plugin) for hashing of `bundle.js`
 
