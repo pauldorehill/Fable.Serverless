@@ -24,10 +24,6 @@ type Msg =
     | Submit
     | PostedJson of User
 
-// Used to test where its running
-// So can deploy locally and to azure
-let rootUrl = string Browser.Dom.window.location
-
 let init () : Model * Cmd<Msg> =
     let user = { Name = "" ; Count = 0; Message = "" }
     { User = user; Info = "" }, Cmd.none
@@ -40,7 +36,7 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
     | Submit ->
         let msg : JS.Promise<Msg> =
             promise {
-                let! post = Fetch.post(rootUrl + "json", model.User)
+                let! post = Fetch.post("/json", model.User)
                 return (PostedJson post)
             }
         let newUser = if model.User.Message <> "" then { model.User with Message = "Trying again..." } else model.User
